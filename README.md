@@ -13,7 +13,7 @@ For interactive API documentation (Swagger UI), append `/docs` to the base URL: 
 
 To run this application locally or deploy it, you will need:
 
-* **Python 3.8+**: The application is built with Python.
+* **Python 3.9+**: The application is built with Python.
 
 * **pip**: For installing Python dependencies.
 
@@ -44,7 +44,7 @@ npx -y promptfoo eval --config project-tds-virtual-ta-promptfoo.yaml
 ```
 curl -X POST "[https://virtual-ta-tds-4dg5.onrender.com/query](https://virtual-ta-tds-4dg5.onrender.com/query)" \
      -H "Content-Type: application/json" \
-     -d '{"question": "What are the common challenges faced by students?"}'
+     -d '{"question": "When is the TDS Sep 2025 end-term exam?"}'
 ```
 
 ### Querying with Text and Image (Multimodal)
@@ -63,9 +63,10 @@ The API supports multimodal queries where you can provide a Base64 encoded image
 **The `curl` command with an image (example - replace `your_base64_image_string`):**
 
 ```
-curl -X POST "[https://virtual-ta-tds-4dg5.onrender.com/query](https://virtual-ta-tds-4dg5.onrender.com/query)" \
-     -H "Content-Type: application/json" \
-     -d '{"question": "Can you explain the diagram in this image?", "image": "your_base64_image_string"}'
+curl "https://app.example.com/api/" \
+  -H "Content-Type: application/json" \
+  -d "{\"question\": \"Should I use gpt-4o-mini which AI proxy supports, or gpt3.5 turbo?\", \"image\": \"$(base64 -w0 project-tds-virtual-ta-q1.webp)\"}"
+
 ```
 
 **Note on image size:** Be mindful of the size of your Base64 encoded image, as very large images can impact request performance and may be subject to API limits.
@@ -77,8 +78,7 @@ When using tools like `llm-rubric` or similar LLM evaluation frameworks, you wil
 For example, if `llm-rubric` requires an OpenAI API key:
 
 ```
-export OPENAI_API_KEY="your_openai_api_key_for_rubric"
-llm-rubric run ...
+OPENAI_API_KEY="your_openai_api_key_for_rubric"
 ```
 
 ---
