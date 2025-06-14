@@ -1,0 +1,8 @@
+.env
+notes.txt
+data/
+project-tds-virtual-ta-promptfoo.yaml
+project-tds-virtual-ta-q1.webp
+utils.py
+__pycache__/
+
