@@ -1,5 +1,5 @@
-# main app
-#Using FastAPI
+# Main App
+#Virtual TA
 import os
 import json
 import sqlite3
@@ -39,7 +39,7 @@ API_KEY = os.getenv("API_KEY")  # Get API key from environment variable
 # Models
 class QueryRequest(BaseModel):
     question: str
-    image: Optional[str] = None  # Base64 encoded image
+    image: Optional[str] = None  # For Base64 encoded image
 
 class LinkInfo(BaseModel):
     url: str
@@ -50,7 +50,7 @@ class QueryResponse(BaseModel):
     links: List[LinkInfo]
 
 # Initialize FastAPI app
-app = FastAPI(title="RAG Query API", description="API for querying the RAG knowledge base")
+app = FastAPI(title="Virtual TA", description="API for querying the RAG knowledge base to help answer questions  - By 24f3000209")
 
 # Add CORS middleware
 app.add_middleware(
@@ -117,6 +117,8 @@ if not os.path.exists(DB_PATH):
     conn.commit()
     conn.close()
 
+
+#By 24f3000209
 # Vector similarity calculation with improved handling
 def cosine_similarity(vec1, vec2):
     try:
@@ -474,7 +476,7 @@ async def generate_answer(question, relevant_results, max_retries=2):
                 raise HTTPException(status_code=500, detail=error_msg)
             await asyncio.sleep(2)  # Wait before retry
 
-# Function to process multimodal content (text + image)
+# Function to process multimodal content
 async def process_multimodal_query(question, image_base64):
     if not API_KEY:
         error_msg = "API_KEY environment variable not set"
@@ -698,7 +700,7 @@ async def query_knowledge_base(request: QueryRequest):
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the Virtual TDS TA! Use POST /query to ask questions."}
+    return {"message": "Welcome to the TDS's Virtual TA! Use POST /query to ask questions."}
 
 
 # Health check endpoint
