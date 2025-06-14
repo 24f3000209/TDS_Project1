@@ -1,4 +1,4 @@
-# Virtual TA - RAG Knowledge Base API
+# Virtual TA
 ## TDS Project - 1 By 24f3000209
 
 ## Introduction
